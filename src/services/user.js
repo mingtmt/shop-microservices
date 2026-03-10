@@ -44,6 +44,17 @@ class UserService {
     return user
   }
 
+  static async updateUserStatus(id, isActive) {
+    const user = await UserRepository.updateById({
+      id,
+      payload: { isActive },
+    })
+
+    if (!user) throw new NotFoundError({ message: 'User not found' })
+
+    return user
+  }
+
   static async deleteUser(id) {
     const user = await UserRepository.deleteById(id)
 

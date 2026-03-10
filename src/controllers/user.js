@@ -36,6 +36,16 @@ class UsersController {
     }).send(res)
   }
 
+  updateUserStatus = async (req, res) => {
+    console.log(req.body)
+    const updatedUser = await UserService.updateUserStatus(req.params.id, req.body.isActive)
+
+    new OK({
+      message: 'User updated successfully',
+      data: updatedUser,
+    }).send(res)
+  }
+
   deleteUser = async (req, res) => {
     await UserService.deleteUser(req.params.id)
 
