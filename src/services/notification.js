@@ -29,6 +29,14 @@ class NotificationService {
       options,
     })
   }
+
+  static async getNotiByUserId(userId, type = 'ALL') {
+    return await NotificationRepository.findNotiByUserId({
+      userId,
+      type,
+      select: 'type senderId receiverId content createdAt options',
+    })
+  }
 }
 
 module.exports = NotificationService
