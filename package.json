@@ -1,70 +1,22 @@
 {
-  "name": "shop-service",
+  "name": "shop-microservices",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "private": true,
+  "workspaces": [
+    "services/*",
+    "packages/*"
+  ],
   "scripts": {
-    "start": "cross-env NODE_ENV=production node server.js",
-    "dev": "cross-env NODE_ENV=development node --watch server.js",
-    "format": "prettier . --write",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "prepare": "husky install"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^3.0.3",
-    "cloudinary": "^2.9.0",
-    "compression": "^1.8.1",
-    "cors": "^2.8.6",
-    "cross-env": "^10.1.0",
-    "dotenv": "^17.2.3",
-    "express": "^5.2.1",
-    "helmet": "^8.1.0",
-    "ioredis": "^5.9.2",
-    "jsonwebtoken": "^9.0.3",
-    "module-alias": "^2.2.3",
-    "mongoose": "^9.1.2",
-    "multer": "^2.0.2",
-    "multer-storage-cloudinary": "^4.0.0",
-    "slugify": "^1.6.6",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1",
-    "winston": "^3.19.0",
-    "winston-loki": "^6.1.3"
+    "dev:api": "npm run dev --workspace=services/api-service",
+    "dev:noti": "npm run dev --workspace=services/notification-service",
+    "dev:all": "concurrently \"npm run dev:api\" \"npm run dev:noti\"" 
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
-    "eslint": "^9.39.2",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "globals": "^17.0.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^16.2.7",
-    "prettier": "^3.7.4"
+    "concurrently": "^8.2.2"
   },
   "overrides": {
     "multer-storage-cloudinary": {
-      "cloudinary": "$cloudinary"
+      "cloudinary": "^2.9.0"
     }
-  },
-  "lint-staged": {
-    "*.js": [
-      "npm run lint:fix",
-      "npm run format"
-    ]
-  },
-  "_moduleAliases": {
-    "@configs": "src/configs",
-    "@controllers": "src/controllers",
-    "@core": "src/core",
-    "@helpers": "src/helpers",
-    "@middlewares": "src/middlewares",
-    "@models": "src/models",
-    "@repositories": "src/repositories",
-    "@routes": "src/routes",
-    "@services": "src/services",
-    "@utils": "src/utils"
   }
 }
