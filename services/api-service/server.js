@@ -23,14 +23,17 @@ const logger = require('./src/configs/logger')
 const db = require('./src/configs/database')
 require('./src/configs/redis')
 const { checkOverload } = require('./src/helpers/checkConnect')
+const { rabbitmq } = require('@shop/shared')
 
 let server
 
 const startServer = async () => {
   try {
     await db.connect()
-
     checkOverload()
+
+    const rabbitMQUrl = process.env.RABBITMQ_URI
+    await rabbitmq.connectRabbitMQ(rabbitMQUrl)
 
     server = app.listen(env.PORT, () => {
       logger.info(`Server running on port ${env.PORT}`)

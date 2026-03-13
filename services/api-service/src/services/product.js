@@ -4,7 +4,7 @@ const ProductFactoryResolver = require('./product.factory')
 const ProductRepository = require('@repositories/product')
 const InventoryRepository = require('@repositories/inventory')
 const { NotFoundError } = require('@core/errorResponse')
-const NotificationService = require('./notification')
+const { rabbitmq } = require('@shop/shared')
 
 class ProductService {
   static async getAllProducts(query) {
@@ -66,13 +66,16 @@ class ProductService {
       stock: payload.stock,
     })
 
-    await NotificationService.pushNotiToSystem({
-      type: 'SHOP-001',
-      receiverId: 1,
-      options: {
-        name: newProduct.name,
+    const messagePayload = {
+      event: 'PRODUCT_PUBLISHED',
+      data: {
+        productId: newProduct._id,
+        productName: newProduct.name,
+        timestamp: new Date(),
       },
-    })
+    }
+
+    await rabbitmq.publishMessage('notification-queue', messagePayload)
 
     return newProduct
   }

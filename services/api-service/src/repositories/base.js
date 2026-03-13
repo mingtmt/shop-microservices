@@ -29,7 +29,7 @@ class BaseRepository {
 
   async updateById({ id, payload, isNew = true }) {
     return await this.model.findByIdAndUpdate(id, payload, {
-      new: isNew,
+      returnDocument: isNew ? 'after' : 'before',
       runValidators: true,
     })
   }
