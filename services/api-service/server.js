@@ -32,8 +32,7 @@ const startServer = async () => {
     await db.connect()
     checkOverload()
 
-    const rabbitMQUrl = process.env.RABBITMQ_URI
-    await rabbitmq.connectRabbitMQ(rabbitMQUrl)
+    await rabbitmq.connectRabbitMQ(process.env.RABBITMQ_URI)
 
     server = app.listen(env.PORT, () => {
       logger.info(`Server running on port ${env.PORT}`)

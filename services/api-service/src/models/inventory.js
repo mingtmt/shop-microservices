@@ -2,6 +2,9 @@
 
 const mongoose = require('mongoose')
 
+const DOCUMENT_NAME = 'Inventory'
+const COLLECTION_NAME = 'Inventories'
+
 const inventorySchema = new mongoose.Schema(
   {
     productId: {
@@ -25,10 +28,10 @@ const inventorySchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: 'inventories',
+    collection: COLLECTION_NAME,
   },
 )
 
-const inventory = mongoose.model('Inventory', inventorySchema)
+const inventory = mongoose.model(DOCUMENT_NAME, inventorySchema)
 
 module.exports = inventory

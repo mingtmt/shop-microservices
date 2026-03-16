@@ -2,6 +2,9 @@
 
 const mongoose = require('mongoose')
 
+const DOCUMENT_NAME = 'Order'
+const COLLECTION_NAME = 'Orders'
+
 const orderSchema = new mongoose.Schema(
   {
     userId: {
@@ -35,7 +38,7 @@ const orderSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: 'orders',
+    collection: COLLECTION_NAME,
   },
 )
 
@@ -47,6 +50,6 @@ orderSchema.set('toJSON', {
   },
 })
 
-const order = mongoose.model('Order', orderSchema)
+const order = mongoose.model(DOCUMENT_NAME, orderSchema)
 
 module.exports = order

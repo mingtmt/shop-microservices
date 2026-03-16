@@ -2,6 +2,9 @@
 
 const mongoose = require('mongoose')
 
+const DOCUMENT_NAME = 'Comment'
+const COLLECTION_NAME = 'Comments'
+
 const commentSchema = new mongoose.Schema(
   {
     userId: {
@@ -35,7 +38,7 @@ const commentSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: 'comments',
+    collection: COLLECTION_NAME,
   },
 )
 
@@ -47,6 +50,6 @@ commentSchema.set('toJSON', {
   },
 })
 
-const comment = mongoose.model('Comment', commentSchema)
+const comment = mongoose.model(DOCUMENT_NAME, commentSchema)
 
 module.exports = comment

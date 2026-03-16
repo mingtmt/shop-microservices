@@ -11,7 +11,6 @@ const cartRouter = require('./cart')
 const inventoryRouter = require('./inventory')
 const checkoutRouter = require('./order')
 const commentRouter = require('./comment')
-const notificationRouter = require('./notification')
 
 // admin router
 router.use('/admin', protect, restrictTo('admin'), adminRouter)
@@ -24,6 +23,5 @@ router.use('/carts', cartRouter)
 router.use('/inventories', inventoryRouter)
 router.use('/checkout', checkoutRouter)
 router.use('/comments', commentRouter)
-router.use('/notifications', notificationRouter)
 
 module.exports = router

@@ -3,6 +3,9 @@
 const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
 
+const DOCUMENT_NAME = 'User'
+const COLLECTION_NAME = 'Users'
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -46,7 +49,7 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: 'users',
+    collection: COLLECTION_NAME,
   },
 )
 
@@ -86,6 +89,6 @@ userSchema.set('toJSON', {
   },
 })
 
-const user = mongoose.model('User', userSchema)
+const user = mongoose.model(DOCUMENT_NAME, userSchema)
 
 module.exports = user

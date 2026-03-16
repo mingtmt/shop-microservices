@@ -2,6 +2,9 @@
 
 const mongoose = require('mongoose')
 
+const DOCUMENT_NAME = 'Cart'
+const COLLECTION_NAME = 'Carts'
+
 const cartSchema = new mongoose.Schema(
   {
     state: {
@@ -26,7 +29,7 @@ const cartSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: 'carts',
+    collection: COLLECTION_NAME,
   },
 )
 
@@ -38,6 +41,6 @@ cartSchema.set('toJSON', {
   },
 })
 
-const cart = mongoose.model('Cart', cartSchema)
+const cart = mongoose.model(DOCUMENT_NAME, cartSchema)
 
 module.exports = cart

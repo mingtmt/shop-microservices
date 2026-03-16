@@ -3,6 +3,9 @@
 const mongoose = require('mongoose')
 const slugify = require('slugify')
 
+const DOCUMENT_NAME = 'Product'
+const COLLECTION_NAME = 'Products'
+
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -75,7 +78,7 @@ const productSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: 'products',
+    collection: COLLECTION_NAME,
   },
 )
 
@@ -97,6 +100,6 @@ productSchema.set('toJSON', {
   },
 })
 
-const Product = mongoose.model('Product', productSchema)
+const Product = mongoose.model(DOCUMENT_NAME, productSchema)
 
 module.exports = Product

@@ -2,6 +2,9 @@
 
 const mongoose = require('mongoose')
 
+const DOCUMENT_NAME = 'Discount'
+const COLLECTION_NAME = 'Discounts'
+
 const discountSchema = new mongoose.Schema(
   {
     name: {
@@ -65,10 +68,10 @@ const discountSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: 'discounts',
+    collection: COLLECTION_NAME,
   },
 )
 
-const discount = mongoose.model('Discount', discountSchema)
+const discount = mongoose.model(DOCUMENT_NAME, discountSchema)
 
 module.exports = discount

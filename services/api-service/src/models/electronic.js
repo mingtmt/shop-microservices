@@ -2,6 +2,8 @@
 
 const mongoose = require('mongoose')
 
+const COLLECTION_NAME = 'Electronics'
+
 // Base Electronic Schema
 const electronicSchema = new mongoose.Schema(
   {
@@ -27,7 +29,7 @@ const electronicSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: 'electronics',
+    collection: COLLECTION_NAME,
     discriminatorKey: 'type',
   },
 )
