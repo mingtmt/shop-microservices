@@ -1,11 +1,8 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const env = require('./env')
+const { db: { uri, maxPoolSize } } = require('./configs/configs')
 const { countConnect } = require('@helpers/checkConnect')
-
-const connectionString =
-  process.env.NODE_ENV === 'test' ? process.env.TEST_MONGODB_URI : process.env.MONGODB_URI
 
 class Database {
   constructor() {
@@ -13,14 +10,14 @@ class Database {
   }
 
   async connect(type = 'mongodb') {
-    if (env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === 'development') {
       mongoose.set('debug', true)
       mongoose.set('debug', { color: true })
     }
 
     try {
-      await mongoose.connect(connectionString, {
-        maxPoolSize: 50,
+      await mongoose.connect(uri, {
+        maxPoolSize: maxPoolSize,
         serverSelectionTimeoutMS: 5000,
       })
 

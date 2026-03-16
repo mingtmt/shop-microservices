@@ -2,11 +2,14 @@
 
 require('dotenv').config()
 const { rabbitmq } = require('@shop/shared')
+const db = require('./src/configs/database')
+const Notification = require('./src/models/notification.model')
 
 const QUEUE_NAME = 'notification-queue'
 
 const runConsumer = async () => {
   try {
+    await db.connect()
     const rabbitMQUrl = process.env.RABBITMQ_URI
     await rabbitmq.connectRabbitMQ(rabbitMQUrl)
     console.log('[Notification Service] Connected to RabbitMQ successfully')
@@ -21,7 +24,7 @@ const runConsumer = async () => {
             // TODO: Handle the PRODUCT_PUBLISHED event
             console.log(`>> Sending noti for new product: ${msgData.data.productName}`)
             
-            // Giả lập thời gian gửi mail mất 2 giây
+            // Simulate sending notification
             await new Promise(resolve => setTimeout(resolve, 2000))
             console.log(`>> Sended noti successfully for product ${msgData.data.productId}!`)
             break;

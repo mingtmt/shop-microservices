@@ -1,6 +1,5 @@
 'use strict'
 
-require('dotenv').config()
 require('module-alias/register')
 const express = require('express')
 const swaggerUi = require('swagger-ui-express')

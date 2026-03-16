@@ -1,5 +1,6 @@
 'use strict'
 
+require('dotenv').config()
 const moduleAlias = require('module-alias')
 const path = require('path')
 

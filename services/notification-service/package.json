@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@shop/shared": "*",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "mongoose": "^9.1.2"
   }
 }

@@ -1,7 +1,5 @@
 'use strict'
 
-require('dotenv').config()
-
 const PORT = process.env.PORT
 const JWT_SECRET = process.env.JWT_SECRET
 const GRAFANA_URL = process.env.GRAFANA_URL
