@@ -1,8 +1,8 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const { db: { uri, maxPoolSize } } = require('./configs/configs')
-const { countConnect } = require('@helpers/checkConnect')
+const { db: { uri, maxPoolSize } } = require('./configs')
+const logger = require('./logger')
 
 class Database {
   constructor() {
@@ -21,11 +21,9 @@ class Database {
         serverSelectionTimeoutMS: 5000,
       })
 
-      console.log(`Connected Mongodb Success! State:`, mongoose.connection.readyState)
-
-      countConnect()
+      logger.info(`Connected Mongodb Success! State:`, mongoose.connection.readyState)
     } catch (err) {
-      console.error(`Error Connect to MongoDB: ${err.message}`)
+      logger.error(`Error Connect to MongoDB: ${err.message}`)
     }
   }
 

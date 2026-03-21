@@ -1,23 +1,21 @@
 'use strict'
 
 require('dotenv').config()
+require('./src/configs/database')
 const { rabbitmq } = require('@shop/shared')
-const db = require('./src/configs/database')
-const Notification = require('./src/models/notification.model')
+const Notification = require('./src/models/notification')
+const logger = require('./src/configs/logger')
 
 const QUEUE_NAME = 'notification-queue'
 
 const runConsumer = async () => {
   try {
-    await db.connect()
     const rabbitMQUrl = process.env.RABBITMQ_URI
     await rabbitmq.connectRabbitMQ(rabbitMQUrl)
-    console.log('[Notification Service] Connected to RabbitMQ successfully')
+    logger.info('[Notification Service] Connected to RabbitMQ successfully')
 
     await rabbitmq.consumeMessage(QUEUE_NAME, async (msgData) => {
-      console.log('----------------------------------------')
-      console.log(`[New Message] event: ${msgData.event}`)
-      console.log('Data:', msgData.data)
+      logger.info(`[New Message] event: ${msgData.event}`)
       
       switch (msgData.event) {
         case 'PRODUCT_PUBLISHED':
@@ -36,11 +34,10 @@ const runConsumer = async () => {
             console.log('>> Event not supported.')
             break;
       }
-      console.log('----------------------------------------')
     })
 
   } catch (error) {
-    console.error('Error in Notification Consumer:', error)
+    logger.error('Error in Notification Consumer:', error)
     process.exit(1)
   }
 }

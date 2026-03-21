@@ -9,6 +9,8 @@
   "dependencies": {
     "@shop/shared": "*",
     "dotenv": "^17.2.3",
-    "mongoose": "^9.1.2"
+    "mongoose": "^9.1.2",
+    "winston": "^3.19.0",
+    "winston-daily-rotate-file": "^5.0.0"
   }
 }

@@ -12,7 +12,7 @@ const notificationSchema = new mongoose.Schema({
     required: true 
   },
   receivedId: { 
-    type: String, // Email, Số điện thoại, hoặc ID của User nhận
+    type: String,
     required: true 
   },
   content: { 
@@ -20,13 +20,13 @@ const notificationSchema = new mongoose.Schema({
     required: true 
   },
   options: { 
-    type: Object, // Chứa data linh hoạt (ví dụ: tên sản phẩm, link hình ảnh)
+    type: Object,
     default: {} 
   },
   status: {
     type: String,
     enum: ['PENDING', 'SUCCESS', 'FAILED'],
-    default: 'PENDING' // Mặc định khi vừa nhận từ Queue sẽ là PENDING
+    default: 'PENDING'
   }
 }, {
   timestamps: true,
