@@ -7,7 +7,7 @@ class NotificationRepository {
     try {
       return await Notification.create(data)
     } catch (error) {
-      throw new Error(`Error Create Notification: ${error.message}`)
+      throw new Error(`Error create notification: ${error.message}`)
     }
   }
 }
