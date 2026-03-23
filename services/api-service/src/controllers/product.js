@@ -80,6 +80,24 @@ class ProductController {
     }).send(res)
   }
 
+  publishProduct = async (req, res) => {
+    const product = await ProductService.publishProduct(req.params.id)
+
+    new OK({
+      message: 'Product published successfully',
+      data: product,
+    }).send(res)
+  }
+
+  unpublishProduct = async (req, res) => {
+    const product = await ProductService.unpublishProduct(req.params.id)
+
+    new OK({
+      message: 'Product unpublished successfully',
+      data: product,
+    }).send(res)
+  }
+
   deleteProduct = async (req, res) => {
     await ProductService.deleteProduct(req.params.id)
 

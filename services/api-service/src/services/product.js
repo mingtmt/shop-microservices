@@ -66,17 +66,6 @@ class ProductService {
       stock: payload.stock,
     })
 
-    const messagePayload = {
-      event: 'PRODUCT_PUBLISHED',
-      data: {
-        productId: newProduct._id,
-        productName: newProduct.name,
-        timestamp: new Date(),
-      },
-    }
-
-    await rabbitmq.publishMessage('notification-queue', messagePayload)
-
     return newProduct
   }
 
@@ -87,6 +76,43 @@ class ProductService {
     }
 
     return await ProductFactoryResolver.updateProduct(payload.type, id, payload)
+  }
+
+  static async publishProduct(id) {
+    const product = await ProductRepository.findById(id)
+    if (!product) {
+      throw new NotFoundError({ message: 'Product not found' })
+    }
+
+    const updatedProduct = await ProductRepository.updateById({
+      id,
+      payload: { isDraft: false },
+    })
+
+    const messagePayload = {
+      event: 'PRODUCT_PUBLISHED',
+      data: {
+        productId: updatedProduct._id,
+        productName: updatedProduct.name,
+        timestamp: new Date(),
+      },
+    }
+
+    await rabbitmq.publishMessage('notification-queue', messagePayload)
+
+    return updatedProduct
+  }
+
+  static async unpublishProduct(id) {
+    const product = await ProductRepository.findById(id)
+    if (!product) {
+      throw new NotFoundError({ message: 'Product not found' })
+    }
+
+    return await ProductRepository.updateById({
+      id,
+      payload: { isDraft: true },
+    })
   }
 
   static async deleteProduct(id) {

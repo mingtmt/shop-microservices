@@ -15,6 +15,8 @@ router.post(
   asyncHandler(productController.createProduct),
 )
 router.patch('/:id', setAuditFields, asyncHandler(productController.updateProduct))
+router.patch('/:id/publish', asyncHandler(productController.publishProduct))
+router.patch('/:id/unpublish', asyncHandler(productController.unpublishProduct))
 router.delete('/:id', asyncHandler(productController.deleteProduct))
 
 module.exports = router
