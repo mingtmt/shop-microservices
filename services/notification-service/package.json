@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node --watch-path=./src --watch server.js"
   },
   "dependencies": {
     "@shop/shared": "*",
