@@ -1,6 +1,6 @@
 'use strict'
 
-const logger = require('../configs/logger')
+const logger = require('@configs/logger')
 
 const asyncConsumer = (fn) => {
   return async (msgData) => {

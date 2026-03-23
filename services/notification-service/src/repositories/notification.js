@@ -1,6 +1,6 @@
 'use strict'
 
-const Notification = require('../models/notification')
+const Notification = require('@models/notification')
 
 class NotificationRepository {
   async createNotification(data) {

@@ -1,6 +1,6 @@
 'use strict'
 
-const NotificationRepository = require('../repositories/notification')
+const NotificationRepository = require('@repositories/notification')
 
 class NotificationService {
   static async recordNotification(msgData) {

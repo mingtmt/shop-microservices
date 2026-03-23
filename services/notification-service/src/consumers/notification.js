@@ -1,9 +1,9 @@
 'use strict'
 
 const { rabbitmq } = require('@shop/shared')
-const logger = require('../configs/logger')
-const NotificationService = require('../services/notification')
-const { asyncConsumer } = require('../utils/asyncConsumer')
+const logger = require('@configs/logger')
+const NotificationService = require('@services/notification')
+const { asyncConsumer } = require('@utils/asyncConsumer')
 
 const QUEUE_NAME = 'notification-queue'
 
