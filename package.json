@@ -9,7 +9,16 @@
   "scripts": {
     "dev:api": "npm run dev --workspace=services/api-service",
     "dev:noti": "npm run dev --workspace=services/notification-service",
-    "dev:all": "concurrently \"npm run dev:api\" \"npm run dev:noti\"" 
+    "dev:all": "concurrently \"npm run dev:api\" \"npm run dev:noti\"",
+    "format:api": "npm run format --workspace=services/api-service",
+    "format:noti": "npm run format --workspace=services/notification-service",
+    "format:all": "concurrently \"npm run format:api\" \"npm run format:noti\"",
+    "lint:api": "npm run lint --workspace=services/api-service",
+    "lint:noti": "npm run lint --workspace=services/notification-service",
+    "lint:all": "concurrently \"npm run lint:api\" \"npm run lint:noti\"",
+    "lint:fix:api": "npm run lint:fix --workspace=services/api-service",
+    "lint:fix:noti": "npm run lint:fix --workspace=services/notification-service",
+    "lint:fix:all": "concurrently \"npm run lint:fix:api\" \"npm run lint:fix:noti\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

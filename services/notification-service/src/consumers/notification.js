@@ -15,7 +15,7 @@ const processNotificationMessage = async (msgData) => {
 
   // Virtual process send email
   logger.info('Process notification...')
-  await new Promise(resolve => setTimeout(resolve, 2000))
+  await new Promise((resolve) => setTimeout(resolve, 2000))
 
   // TODO: update SUCCESS status
   // await NotificationService.updateNotificationStatus(notiRecord._id, 'SUCCESS')
@@ -27,5 +27,5 @@ const listenToNotiQueue = async () => {
 }
 
 module.exports = {
-  listenToNotiQueue
+  listenToNotiQueue,
 }

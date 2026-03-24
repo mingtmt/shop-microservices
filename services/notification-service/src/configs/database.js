@@ -1,7 +1,9 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const { db: { uri, maxPoolSize } } = require('./configs')
+const {
+  db: { uri, maxPoolSize },
+} = require('./configs')
 const logger = require('./logger')
 
 class Database {

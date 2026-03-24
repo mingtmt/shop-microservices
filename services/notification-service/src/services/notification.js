@@ -13,7 +13,7 @@ class NotificationService {
           receivedId: 'ALL',
           content: `Sản phẩm mới: ${msgData.data.productName} vừa lên kệ!`,
           options: msgData.data,
-          status: 'PENDING'
+          status: 'PENDING',
         }
         break
 
@@ -23,7 +23,7 @@ class NotificationService {
           receivedId: msgData.data.userId,
           content: `Đơn hàng #${msgData.data.orderId} đã được đặt thành công.`,
           options: msgData.data,
-          status: 'PENDING'
+          status: 'PENDING',
         }
         break
 

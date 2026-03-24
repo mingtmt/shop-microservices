@@ -15,7 +15,7 @@ moduleAlias.addAliases({
 
 const { rabbitmq } = require('@shop/shared')
 const logger = require('@configs/logger')
-require('@configs/database') 
+require('@configs/database')
 
 const { listenToNotiQueue } = require('@consumers/notification')
 
@@ -27,7 +27,6 @@ const startService = async () => {
 
     // Listen to Notification Queue
     await listenToNotiQueue()
-
   } catch (error) {
     logger.error(`Fatal Error: ${error.message}`)
     process.exit(1)
