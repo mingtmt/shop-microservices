@@ -36,7 +36,7 @@ class ProductRepository extends BaseRepository {
       { $limit: limit },
       {
         $lookup: {
-          from: 'inventories',
+          from: 'Inventories',
           localField: '_id',
           foreignField: 'productId',
           as: 'inventory_data',
