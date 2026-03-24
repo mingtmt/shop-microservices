@@ -3,5 +3,5 @@
 const rabbitmq = require('./src/rabbitmq')
 
 module.exports = {
-  rabbitmq
+  rabbitmq,
 }

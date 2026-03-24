@@ -10,18 +10,18 @@
     "dev:api": "npm run dev --workspace=services/api-service",
     "dev:noti": "npm run dev --workspace=services/notification-service",
     "dev:all": "concurrently \"npm run dev:api\" \"npm run dev:noti\"",
-    "format:api": "npm run format --workspace=services/api-service",
-    "format:noti": "npm run format --workspace=services/notification-service",
-    "format:all": "concurrently \"npm run format:api\" \"npm run format:noti\"",
-    "lint:api": "npm run lint --workspace=services/api-service",
-    "lint:noti": "npm run lint --workspace=services/notification-service",
-    "lint:all": "concurrently \"npm run lint:api\" \"npm run lint:noti\"",
-    "lint:fix:api": "npm run lint:fix --workspace=services/api-service",
-    "lint:fix:noti": "npm run lint:fix --workspace=services/notification-service",
-    "lint:fix:all": "concurrently \"npm run lint:fix:api\" \"npm run lint:fix:noti\""
+    "format": "prettier . --write",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^17.0.0",
+    "prettier": "^3.7.4"
   },
   "overrides": {
     "multer-storage-cloudinary": {

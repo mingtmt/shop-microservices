@@ -7,7 +7,7 @@ let channel = null
 
 const connectRabbitMQ = async (url) => {
   if (connection && channel) return { connection, channel }
-  
+
   try {
     connection = await amqplib.connect(url)
     channel = await connection.createChannel()
@@ -21,12 +21,13 @@ const connectRabbitMQ = async (url) => {
 
 const publishMessage = async (queueName, message) => {
   try {
-    if (!channel) throw new Error('RabbitMQ Channel is not initialized. Please call connectRabbitMQ first.')
+    if (!channel)
+      throw new Error('RabbitMQ Channel is not initialized. Please call connectRabbitMQ first.')
 
     await channel.assertQueue(queueName, { durable: true })
-    
+
     channel.sendToQueue(queueName, Buffer.from(JSON.stringify(message)), {
-      persistent: true
+      persistent: true,
     })
     console.log(`[Shared] Message sent to queue: ${queueName}`)
   } catch (error) {
@@ -41,14 +42,18 @@ const consumeMessage = async (queueName, callback) => {
 
     await channel.assertQueue(queueName, { durable: true })
     console.log(`[Shared] Waiting for messages in queue: ${queueName}`)
-    
-    channel.consume(queueName, (msg) => {
-      if (msg !== null) {
-        const data = JSON.parse(msg.content.toString())
-        callback(data)
-        channel.ack(msg) 
-      }
-    }, { noAck: false })
+
+    channel.consume(
+      queueName,
+      (msg) => {
+        if (msg !== null) {
+          const data = JSON.parse(msg.content.toString())
+          callback(data)
+          channel.ack(msg)
+        }
+      },
+      { noAck: false },
+    )
   } catch (error) {
     console.error('Consume Error:', error)
     throw error
@@ -58,5 +63,5 @@ const consumeMessage = async (queueName, callback) => {
 module.exports = {
   connectRabbitMQ,
   publishMessage,
-  consumeMessage
+  consumeMessage,
 }
