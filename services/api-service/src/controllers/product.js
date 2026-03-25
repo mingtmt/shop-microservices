@@ -32,6 +32,15 @@ class ProductController {
     }).send(res)
   }
 
+  getProductDetails = async (req, res) => {
+    const product = await ProductService.getProductDetails(req.params.id)
+
+    new OK({
+      message: 'Get product details successfully',
+      data: product,
+    }).send(res)
+  }
+
   getProductBySlug = async (req, res) => {
     const product = await ProductService.getProductBySlug(req.params.slug)
 

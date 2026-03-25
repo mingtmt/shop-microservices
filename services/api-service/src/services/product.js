@@ -33,6 +33,16 @@ class ProductService {
     })
   }
 
+  static async getProductDetails(id) {
+    const product = await ProductRepository.getProductDetails(id)
+
+    if (!product) {
+      throw new NotFoundError({ message: 'Product not found' })
+    }
+
+    return product
+  }
+
   static async getProductById(id) {
     const product = await ProductRepository.findById(id)
 

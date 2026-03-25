@@ -8,6 +8,7 @@ const setAuditFields = require('@middlewares/setAuditFields')
 const uploadImage = require('@middlewares/uploadImage')
 
 router.get('/', asyncHandler(productController.getAllProductsForAdmin))
+router.get('/:id', asyncHandler(productController.getProductDetails))
 router.post(
   '/',
   uploadImage.single('thumbnail'),

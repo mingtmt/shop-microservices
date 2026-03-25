@@ -1,6 +1,7 @@
 'use strict'
 
 const Product = require('@models/product')
+const Inventory = require('@models/inventory')
 const BaseRepository = require('./base')
 const { getSelectData } = require('@utils')
 
@@ -54,11 +55,22 @@ class ProductRepository extends BaseRepository {
           stock: { $ifNull: ['$inventory_data.stock', 0] },
         },
       },
-
       {
         $project: projectStage,
       },
     ])
+  }
+
+  async getProductDetails(id) {
+    const product = await Product.findById(id).lean()
+
+    if (!product) return null
+
+    const inventory = await Inventory.findOne({ productId: id }).lean()
+
+    product.stock = inventory ? inventory.stock : 0
+
+    return product
   }
 
   async findBySlug(slug, select = '') {
